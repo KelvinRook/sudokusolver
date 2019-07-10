@@ -9,20 +9,22 @@ function solver(){
 document.querySelectorAll('td.g0').forEach(function(box) {
   boxArray = intArray.slice();
   colBox = parseInt(box.firstChild.id.slice(1,2));
+  colVar = parseInt(box.firstChild.id.slice(1,2));
   rowBox = parseInt(box.firstChild.id.slice(2,3));
+  rowVar = parseInt(box.firstChild.id.slice(2,3));
   for(colBox; colBox<parseInt(box.firstChild.id.slice(1,2))+3;colBox++)
   {
       boxArray = boxArray.filter(boxVal => boxVal != parseInt(document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value));
  
       for(rowBox;rowBox<parseInt(box.firstChild.id.slice(2,3))+3;rowBox++)
-      { 
-          boxArray = boxArray.filter(boxVal => boxVal != parseInt(document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value));; 
+      {
+          boxArray = boxArray.filter(boxVal => boxVal != parseInt(document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value));;
       }
-      
+     
     rowBox = parseInt(box.firstChild.id.slice(2,3));
     if(colBox >= parseInt(box.firstChild.id.slice(1,2))+2)
     {
-      
+     
       colBox = parseInt(box.firstChild.id.slice(1,2));
       rowBox = parseInt(box.firstChild.id.slice(2,3));
       for(colBox; colBox<parseInt(box.firstChild.id.slice(1,2))+3;colBox++)
@@ -52,20 +54,14 @@ document.querySelectorAll('td.g0').forEach(function(box) {
           boxArray = boxArray.filter(boxVal => boxVal != parseInt(document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value));
           solver();
           }
-          else if(checkArray.length == 2)
-          {
-            document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value = checkArray.pop();
-            boxArray = boxArray.filter(boxVal => boxVal != parseInt(document.querySelector(`[id^='f${colBox}'][id$='${rowBox}']`).value));
-            solver();
-            }
         }
         }
-      
+     
         rowBox = parseInt(box.firstChild.id.slice(2,3));
-      } 
+      }
     }
   }
   colBox = parseInt(box.firstChild.id.slice(1,2));
   rowBox = parseInt(box.firstChild.id.slice(2,3));
-}); 
+});
 }solver();
